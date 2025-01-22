@@ -1,4 +1,3 @@
-```markdown
 # Prediksi Penyakit Jantung
 
 Proyek ini adalah aplikasi berbasis web untuk memprediksi kemungkinan seseorang menderita penyakit jantung berdasarkan data medis tertentu. Aplikasi ini menggunakan **HTML**, **JavaScript**, dan **Bootstrap** untuk antarmuka pengguna, serta backend **Flask** untuk pemrosesan prediksi.
@@ -18,4 +17,3 @@ Proyek ini adalah aplikasi berbasis web untuk memprediksi kemungkinan seseorang 
   - `1`: Ada kemungkinan penyakit jantung.
   - `0`: Tidak ada kemungkinan penyakit jantung.
 - **Probabilitas**: Distribusi probabilitas hasil prediksi dalam bentuk array.
-```
