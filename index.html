@@ -6,20 +6,74 @@
     <title>Penyakit Jantung Prediction</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        .step-description { margin-bottom: 20px; }
-        .step-content { margin-bottom: 40px; }
+        body {
+            background: linear-gradient(135deg, #1c1c1e, #636363);
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+        .text-center {
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+        }
+        .step-description {
+            margin-bottom: 20px;
+        }
+        .step-content {
+            margin-bottom: 30px;
+        }
+        .btn {
+            font-weight: bold;
+            border-radius: 50px;
+        }
+        #nextBtn {
+            background: linear-gradient(45deg, #16a085, #2ecc71);
+            color: #ffffff;
+        }
+        #prevBtn {
+            background: linear-gradient(45deg, #c0392b, #e74c3c);
+            color: #ffffff;
+        }
+        #nextBtn:hover, #prevBtn:hover {
+            opacity: 0.9;
+        }
+        .modal-content {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: #ffffff;
+            border-radius: 15px;
+        }
+        .modal-title {
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 <body>
-<div class="container mt-5">
+<div class="container">
     <h1 class="text-center mb-4">Prediksi Penyakit Jantung</h1>
     <div id="form-steps">
         <!-- Steps will be dynamically generated -->
     </div>
     <div class="d-flex justify-content-between">
-        <button id="prevBtn" class="btn btn-secondary" onclick="prevStep()">Previous</button>
-        <button id="nextBtn" class="btn btn-primary" onclick="nextStep()">Next</button>
+        <button id="prevBtn" class="btn" onclick="prevStep()">
+            <i class="fas fa-arrow-left"></i> Previous
+        </button>
+        <button id="nextBtn" class="btn" onclick="nextStep()">
+            Next <i class="fas fa-arrow-right"></i>
+        </button>
     </div>
 </div>
 
@@ -32,10 +86,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p id="resultMessage"></p>
+                <p id="resultMessage" class="fs-5"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
@@ -43,19 +97,78 @@
 
 <script>
     const steps = [
-        { label: "Age", desc: "Usia pasien dalam tahun.", type: "number" },
-        { label: "Sex", desc: "Jenis kelamin pasien (0 = Perempuan, 1 = Laki-laki).", type: "select", options: { 0: "Perempuan", 1: "Laki-laki" }},
-        { label: "Chest Pain Type (CP)", desc: "Jenis nyeri dada pasien. (0 = Typical angina, 1 = Atypical angina, 2 = Non-anginal pain, 3 = Asymptomatic).", type: "select", options: { 0: "Typical Angina", 1: "Atypical Angina", 2: "Non-Anginal Pain", 3: "Asymptomatic" }},
-        { label: "Resting Blood Pressure (trestbps)", desc: "Tekanan darah sistolik pasien (mmHg).", type: "number" },
-        { label: "Serum Cholesterol (chol)", desc: "Tingkat kolesterol dalam darah pasien (mg/dl).", type: "number" },
-        { label: "Fasting Blood Sugar (fbs)", desc: "Apakah gula darah saat puasa > 120 mg/dl (0 = Tidak, 1 = Ya).", type: "select", options: { 0: "Tidak", 1: "Ya" }},
-        { label: "Resting ECG (restecg)", desc: "Hasil EKG saat istirahat. (0 = Normal, 1 = Abnormal ST-T, 2 = Kemungkinan hipertrofi ventrikel kiri).", type: "select", options: { 0: "Normal", 1: "Abnormal ST-T", 2: "Hipertrofi Ventrikel Kiri" }},
-        { label: "Max Heart Rate (thalach)", desc: "Denyut jantung maksimum selama latihan fisik.", type: "number" },
-        { label: "Exercise Angina (exang)", desc: "Apakah ada nyeri dada saat olahraga? (0 = Tidak, 1 = Ya).", type: "select", options: { 0: "Tidak", 1: "Ya" }},
-        { label: "ST Depression (oldpeak)", desc: "Depresi segmen ST akibat olahraga dibandingkan istirahat.", type: "number" },
-        { label: "ST Slope (slope)", desc: "Kemiringan segmen ST selama denyut jantung meningkat. (0 = Menurun, 1 = Mendatar, 2 = Meningkat).", type: "select", options: { 0: "Menurun", 1: "Mendatar", 2: "Meningkat" }},
-        { label: "Major Vessels (ca)", desc: "Jumlah pembuluh darah utama yang terlihat menyempit melalui fluoroskopi.", type: "number" },
-        { label: "Thalassemia (thal)", desc: "Hasil tes thalassemia. (0 = Normal, 1 = Fixed Defect, 2 = Reversible Defect).", type: "select", options: { 0: "Normal", 1: "Fixed Defect", 2: "Reversible Defect" }},
+        { 
+            label: "Age", 
+            desc: "Usia pasien dalam tahun. Contoh: 45, 60.", 
+            type: "number" 
+        },
+        { 
+            label: "Sex", 
+            desc: "Jenis kelamin pasien:\n- 0: Perempuan\n- 1: Laki-laki", 
+            type: "select", 
+            options: { 0: "Perempuan", 1: "Laki-laki" } 
+        },
+        { 
+            label: "Chest Pain Type (CP)", 
+            desc: "Jenis nyeri dada pasien:\n- 0: Typical Angina\n- 1: Atypical Angina\n- 2: Non-Anginal Pain\n- 3: Asymptomatic", 
+            type: "select", 
+            options: { 0: "Typical Angina", 1: "Atypical Angina", 2: "Non-Anginal Pain", 3: "Asymptomatic" } 
+        },
+        { 
+            label: "Resting Blood Pressure (trestbps)", 
+            desc: "Tekanan darah sistolik pasien dalam satuan mmHg. Contoh: 120, 140.", 
+            type: "number" 
+        },
+        { 
+            label: "Serum Cholesterol (chol)", 
+            desc: "Tingkat kolesterol dalam darah pasien dalam satuan mg/dl. Contoh: 200, 250.", 
+            type: "number" 
+        },
+        { 
+            label: "Fasting Blood Sugar (fbs)", 
+            desc: "Apakah gula darah saat puasa lebih dari 120 mg/dl?\n- 0: Tidak\n- 1: Ya", 
+            type: "select", 
+            options: { 0: "Tidak", 1: "Ya" } 
+        },
+        { 
+            label: "Resting ECG (restecg)", 
+            desc: "Hasil EKG saat istirahat:\n- 0: Normal\n- 1: Abnormal ST-T\n- 2: Hipertrofi Ventrikel Kiri", 
+            type: "select", 
+            options: { 0: "Normal", 1: "Abnormal ST-T", 2: "Hipertrofi Ventrikel Kiri" } 
+        },
+        { 
+            label: "Max Heart Rate (thalach)", 
+            desc: "Denyut jantung maksimum selama latihan fisik. Contoh: 150, 180.", 
+            type: "number" 
+        },
+        { 
+            label: "Exercise Angina (exang)", 
+            desc: "Apakah ada nyeri dada saat olahraga?\n- 0: Tidak\n- 1: Ya", 
+            type: "select", 
+            options: { 0: "Tidak", 1: "Ya" } 
+        },
+        { 
+            label: "ST Depression (oldpeak)", 
+            desc: "Depresi segmen ST akibat olahraga dibandingkan istirahat. Contoh: 1.5, 2.3.", 
+            type: "number" 
+        },
+        { 
+            label: "ST Slope (slope)", 
+            desc: "Kemiringan segmen ST selama denyut jantung meningkat:\n- 0: Menurun\n- 1: Mendatar\n- 2: Meningkat", 
+            type: "select", 
+            options: { 0: "Menurun", 1: "Mendatar", 2: "Meningkat" } 
+        },
+        { 
+            label: "Major Vessels (ca)", 
+            desc: "Jumlah pembuluh darah utama yang terlihat menyempit melalui fluoroskopi. Contoh: 0, 1, 2.", 
+            type: "number" 
+        },
+        { 
+            label: "Thalassemia (thal)", 
+            desc: "Hasil tes thalassemia:\n- 0: Normal\n- 1: Fixed Defect\n- 2: Reversible Defect", 
+            type: "select", 
+            options: { 0: "Normal", 1: "Fixed Defect", 2: "Reversible Defect" } 
+        },
     ];
 
     const formSteps = document.getElementById('form-steps');
@@ -63,7 +176,7 @@
     let currentStep = 0;
 
     function renderStep(stepIndex) {
-        formSteps.innerHTML = ""; 
+        formSteps.innerHTML = "";
         const step = steps[stepIndex];
         formSteps.innerHTML = `
             <div class="step-description">
@@ -74,11 +187,7 @@
                 ${
                     step.type === "number"
                         ? `<input type="number" id="stepInput" class="form-control" />`
-                        : `
-                        <select id="stepInput" class="form-control">
-                            ${Object.entries(step.options).map(([key, value]) => `<option value="${key}">${value}</option>`).join("")}
-                        </select>
-                        `
+                        : `<select id="stepInput" class="form-control">${Object.entries(step.options).map(([key, value]) => `<option value="${key}">${value}</option>`).join("")}</select>`
                 }
             </div>
         `;
@@ -148,7 +257,7 @@
                 alert("Terjadi kesalahan. Cek console untuk detail.");
             });
     }
-    
+
     renderStep(currentStep);
 </script>
 </body>
