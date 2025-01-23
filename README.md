@@ -21,9 +21,5 @@ Proyek ini adalah aplikasi berbasis web untuk memprediksi kemungkinan seseorang 
 ## Akses Aplikasi
 Untuk mencoba aplikasi prediksi penyakit jantung, silakan klik tombol berikut:
 
-<a href="https://heart-disease-eta.vercel.app/" target="_blank">
-  <div style="display: inline-block; padding: 12px 40px; font-size: 18px; font-weight: bold; color: #fff; background: linear-gradient(145deg, #6e7e8f, #4e5d66); border-radius: 30px; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.3); transition: all 0.3s ease;">
-    Prediksi Penyakit Jantung
-  </div>
-</a>
+<a href="https://www.buymeacoffee.com/roniemartinez" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Start Now" height="41" width="174"></a>
 
