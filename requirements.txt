@@ -1,0 +1,7 @@
+Flask
+flask-cors
+joblib
+numpy
+pandas
+scikit-learn
+gunicorn  # Wajib untuk deployment
