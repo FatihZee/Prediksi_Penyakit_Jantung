@@ -103,6 +103,7 @@
     </div>
 </div>
 
+<script src="../config.js"></script>
 <script>
     const steps = [
         { 
@@ -285,7 +286,7 @@
 
         console.log("Payload yang dikirim:", payload);
 
-        fetch("https://prediksipenyakitjantung-production.up.railway.app/predict", {
+        fetch("config.API_URL", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
