@@ -21,4 +21,7 @@ Proyek ini adalah aplikasi berbasis web untuk memprediksi kemungkinan seseorang 
 ## Akses Aplikasi
 Untuk mencoba aplikasi prediksi penyakit jantung, silakan klik tombol berikut:
 
-[![Start](./start.png)](https://heart-disease-eta.vercel.app/)
+<a href="https://heart-disease-eta.vercel.app/" target="_blank">
+  <img src="./start.png" alt="Start" width="200">
+</a>
+
