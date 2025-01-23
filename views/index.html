@@ -286,7 +286,7 @@
 
         console.log("Payload yang dikirim:", payload);
 
-        fetch("config.API_URL", {
+        fetch(config.API_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
