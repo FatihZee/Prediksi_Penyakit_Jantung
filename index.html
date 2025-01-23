@@ -7,75 +7,82 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            background: linear-gradient(135deg, #1c1c1e, #636363);
-            color: #ffffff;
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-            width: 100%;
-        }
-        .text-center {
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-        }
-        .step-description {
-            margin-bottom: 20px;
-        }
-        .step-content {
-            margin-bottom: 30px;
-        }
-        .btn {
-            font-weight: bold;
-            border-radius: 50px;
-        }
-        #nextBtn {
-            background: linear-gradient(45deg, #16a085, #2ecc71);
-            color: #ffffff;
-        }
-        #prevBtn {
-            background: linear-gradient(45deg, #c0392b, #e74c3c);
-            color: #ffffff;
-        }
-        #nextBtn:hover, #prevBtn:hover {
-            opacity: 0.9;
-        }
-        .modal-content {
-            background: linear-gradient(135deg, #8e44ad, #3498db);
-            color: #ffffff;
-            border-radius: 15px;
-        }
-        .modal-title {
-            font-size: 1.5rem;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="container">
-    <h1 class="text-center mb-4">Prediksi Penyakit Jantung</h1>
-    <div id="form-steps">
-        <!-- Steps will be dynamically generated -->
-    </div>
-    <div class="d-flex justify-content-between">
-        <button id="prevBtn" class="btn" onclick="prevStep()">
-            <i class="fas fa-arrow-left"></i> Previous
-        </button>
-        <button id="nextBtn" class="btn" onclick="nextStep()">
-            Next <i class="fas fa-arrow-right"></i>
-        </button>
-    </div>
-</div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top futuristic-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">HeartCare</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#landing">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#form-section">Prediksi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tips-section">Tips Kesehatan</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Landing Section -->
+    <section id="landing">
+        <div class="container text-center">
+            <h1 class="hero-title">Selamat Datang di HeartCare</h1>
+            <p class="hero-subtitle">Aplikasi Prediksi Penyakit Jantung yang Modern dan Akurat</p>
+            <a href="#form-section" class="btn btn-primary futuristic-btn">Mulai Prediksi</a>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section id="form-section">
+        <div class="container">
+            <h2 class="text-center mb-4">Prediksi Penyakit Jantung</h2>
+            <div id="form-steps" class="mb-4">
+                <!-- Steps dynamically generated in JS -->
+            </div>
+            <div class="d-flex justify-content-between">
+                <button id="prevBtn" class="btn btn-danger" onclick="prevStep()">
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button id="nextBtn" class="btn btn-success" onclick="nextStep()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section id="tips-section">
+        <div class="container">
+            <h2 class="text-center mb-5">Tips Menjaga Kesehatan Jantung</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card p-3 text-center">
+                        <i class="fas fa-walking tips-icon"></i>
+                        <p class="tips-title">Aktif Bergerak</p>
+                        <p>Olahraga secara teratur membantu menjaga kesehatan jantung dan meningkatkan sirkulasi darah.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3 text-center">
+                        <i class="fas fa-apple-alt tips-icon"></i>
+                        <p class="tips-title">Konsumsi Makanan Sehat</p>
+                        <p>Perbanyak makan buah, sayuran, dan makanan rendah lemak serta rendah kolesterol.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3 text-center">
+                        <i class="fas fa-smoking-ban tips-icon"></i>
+                        <p class="tips-title">Hindari Merokok</p>
+                        <p>Berhenti merokok dapat secara signifikan menurunkan risiko penyakit jantung.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <!-- Modal for Results -->
 <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
@@ -100,76 +107,97 @@
         { 
             label: "Age", 
             desc: "Usia pasien dalam tahun. Contoh: 45, 60.", 
-            type: "number" 
+            type: "number",
+            placeholder: "Masukkan usia pasien"
         },
         { 
             label: "Sex", 
             desc: "Jenis kelamin pasien:\n- 0: Perempuan\n- 1: Laki-laki", 
             type: "select", 
-            options: { 0: "Perempuan", 1: "Laki-laki" } 
+            options: { 0: "Perempuan", 1: "Laki-laki" },
+            placeholder: "Pilih Jenis Kelamin",
+            required: true // Menandakan dropdown ini wajib diisi
         },
         { 
             label: "Chest Pain Type (CP)", 
             desc: "Jenis nyeri dada pasien:\n- 0: Typical Angina\n- 1: Atypical Angina\n- 2: Non-Anginal Pain\n- 3: Asymptomatic", 
             type: "select", 
-            options: { 0: "Typical Angina", 1: "Atypical Angina", 2: "Non-Anginal Pain", 3: "Asymptomatic" } 
+            options: { 0: "Typical Angina", 1: "Atypical Angina", 2: "Non-Anginal Pain", 3: "Asymptomatic" },
+            placeholder: "Pilih Jenis Nyeri Dada",
+            required: true
         },
         { 
             label: "Resting Blood Pressure (trestbps)", 
             desc: "Tekanan darah sistolik pasien dalam satuan mmHg. Contoh: 120, 140.", 
-            type: "number" 
+            type: "number",
+            placeholder: "Masukkan tekanan darah"
         },
         { 
             label: "Serum Cholesterol (chol)", 
             desc: "Tingkat kolesterol dalam darah pasien dalam satuan mg/dl. Contoh: 200, 250.", 
-            type: "number" 
+            type: "number",
+            placeholder: "Masukkan tingkat kolesterol"
         },
         { 
             label: "Fasting Blood Sugar (fbs)", 
             desc: "Apakah gula darah saat puasa lebih dari 120 mg/dl?\n- 0: Tidak\n- 1: Ya", 
             type: "select", 
-            options: { 0: "Tidak", 1: "Ya" } 
+            options: { 0: "Tidak", 1: "Ya" },
+            placeholder: "Pilih Gula Darah Puasa",
+            required: true
         },
         { 
             label: "Resting ECG (restecg)", 
             desc: "Hasil EKG saat istirahat:\n- 0: Normal\n- 1: Abnormal ST-T\n- 2: Hipertrofi Ventrikel Kiri", 
             type: "select", 
-            options: { 0: "Normal", 1: "Abnormal ST-T", 2: "Hipertrofi Ventrikel Kiri" } 
+            options: { 0: "Normal", 1: "Abnormal ST-T", 2: "Hipertrofi Ventrikel Kiri" },
+            placeholder: "Pilih Hasil EKG",
+            required: true
         },
         { 
             label: "Max Heart Rate (thalach)", 
             desc: "Denyut jantung maksimum selama latihan fisik. Contoh: 150, 180.", 
-            type: "number" 
+            type: "number",
+            placeholder: "Masukkan denyut jantung maksimum"
         },
         { 
             label: "Exercise Angina (exang)", 
             desc: "Apakah ada nyeri dada saat olahraga?\n- 0: Tidak\n- 1: Ya", 
             type: "select", 
-            options: { 0: "Tidak", 1: "Ya" } 
+            options: { 0: "Tidak", 1: "Ya" },
+            placeholder: "Pilih Ada Nyeri Dada Saat Olahraga",
+            required: true
         },
         { 
             label: "ST Depression (oldpeak)", 
             desc: "Depresi segmen ST akibat olahraga dibandingkan istirahat. Contoh: 1.5, 2.3.", 
-            type: "number" 
+            type: "number",
+            placeholder: "Masukkan nilai depresinya"
         },
         { 
             label: "ST Slope (slope)", 
             desc: "Kemiringan segmen ST selama denyut jantung meningkat:\n- 0: Menurun\n- 1: Mendatar\n- 2: Meningkat", 
             type: "select", 
-            options: { 0: "Menurun", 1: "Mendatar", 2: "Meningkat" } 
+            options: { 0: "Menurun", 1: "Mendatar", 2: "Meningkat" },
+            placeholder: "Pilih Kemiringan Segmen ST",
+            required: true
         },
         { 
             label: "Major Vessels (ca)", 
             desc: "Jumlah pembuluh darah utama yang terlihat menyempit melalui fluoroskopi. Contoh: 0, 1, 2.", 
-            type: "number" 
+            type: "number",
+            placeholder: "Masukkan jumlah pembuluh darah"
         },
         { 
             label: "Thalassemia (thal)", 
             desc: "Hasil tes thalassemia:\n- 0: Normal\n- 1: Fixed Defect\n- 2: Reversible Defect", 
             type: "select", 
-            options: { 0: "Normal", 1: "Fixed Defect", 2: "Reversible Defect" } 
+            options: { 0: "Normal", 1: "Fixed Defect", 2: "Reversible Defect" },
+            placeholder: "Pilih Hasil Tes Thalassemia",
+            required: true
         },
     ];
+
 
     const formSteps = document.getElementById('form-steps');
     const formData = {};
@@ -178,19 +206,38 @@
     function renderStep(stepIndex) {
         formSteps.innerHTML = "";
         const step = steps[stepIndex];
-        formSteps.innerHTML = `
+        
+        const isSelect = step.type === "select";
+        
+        // Render step description (Panduan)
+        const stepDescription = `
             <div class="step-description">
                 <h4>${step.label}</h4>
                 <p>${step.desc}</p>
             </div>
+        `;
+        
+        // Render step content (input/select)
+        const stepContent = `
             <div class="step-content">
                 ${
-                    step.type === "number"
-                        ? `<input type="number" id="stepInput" class="form-control" />`
-                        : `<select id="stepInput" class="form-control">${Object.entries(step.options).map(([key, value]) => `<option value="${key}">${value}</option>`).join("")}</select>`
+                    isSelect 
+                    ? `
+                        <select id="stepInput" class="form-control" placeholder="${step.placeholder}" ${step.required ? 'required' : ''}>
+                            <option value="" disabled selected>${step.placeholder}</option>
+                            ${Object.entries(step.options).map(([key, value]) => `<option value="${key}">${value}</option>`).join("")}
+                        </select>
+                    ` 
+                    : `
+                        <input type="number" id="stepInput" class="form-control" placeholder="${step.placeholder}" ${step.required ? 'required' : ''} />
+                    `
                 }
             </div>
         `;
+
+        formSteps.innerHTML = stepDescription + stepContent;
+        
+        // If the form has data, pre-fill the input value
         if (formData[step.label] !== undefined) {
             document.getElementById("stepInput").value = formData[step.label];
         }
@@ -245,9 +292,15 @@
             .then((response) => response.json())
             .then((data) => {
                 const resultMessage = `
-                    Prediksi: ${data.prediction === 1 ? "Ada Penyakit" : "Tidak Ada Penyakit"}<br>
-                    Probabilitas: ${JSON.stringify(data.probability)}
+                    <div style="text-align: center; font-family: Arial, sans-serif; margin-top: 20vh;">
+                        <h2>Hasil Prediksi</h2>
+                        <p><strong>Prediksi:</strong> ${data.prediction === 1 ? "Ada Penyakit" : "Tidak Ada Penyakit"}</p>
+                        <h3>Probabilitas</h3>
+                        <p><strong>Tidak Ada Penyakit:</strong> ${(data.probability.no_disease.value * 100).toFixed(2)}% - ${data.probability.no_disease.description}</p>
+                        <p><strong>Ada Penyakit:</strong> ${(data.probability.disease.value * 100).toFixed(2)}% - ${data.probability.disease.description}</p>
+                    </div>
                 `;
+
                 document.getElementById("resultMessage").innerHTML = resultMessage;
                 const resultModal = new bootstrap.Modal(document.getElementById("resultModal"));
                 resultModal.show();

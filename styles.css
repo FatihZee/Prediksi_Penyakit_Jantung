@@ -1,0 +1,390 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #1c1c1e, #636363);
+    color: #ffffff;
+    scroll-behavior: smooth;
+    margin: 0;
+}
+.navbar {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 0; /* Tambahkan padding atas dan bawah */
+}
+
+section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#landing {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0d0d0d, #1f1f1f);
+}
+#landing::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.5), rgba(0, 0, 0, 0));
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    animation: pulse 3s infinite;
+    z-index: 0;
+}
+#landing::after {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.03),
+        rgba(255, 255, 255, 0.03) 10px,
+        transparent 10px,
+        transparent 20px
+    );
+    transform: translate(-50%, -50%) rotate(30deg);
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    animation: slide-bg 20s linear infinite;
+}
+#landing .container {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+@keyframes slide-bg {
+    0% {
+        transform: translate(-50%, -50%) rotate(30deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(390deg);
+    }
+}
+#form-section {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #121212, #1f1f1f);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+#form-section .container {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3), 0 5px 15px rgba(255, 0, 247, 0.2);
+    padding: 30px 20px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+#form-section h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00d4ff;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+#form-steps {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 255, 212, 0.1), 0 5px 10px rgba(255, 0, 247, 0.1);
+}
+#form-steps:hover {
+    box-shadow: 0 15px 25px rgba(0, 255, 212, 0.3), 0 10px 15px rgba(255, 0, 247, 0.3);
+}
+#tips-section {
+    background: linear-gradient(135deg, #121212, #1f1f1f);
+    color: white;
+    padding: 60px 20px;
+}
+#tips-section h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #00d4ff, #ff00f7);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #00d4ff, #ff00f7);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-glow 2s infinite alternate ease-in-out;
+}
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    animation: fade-in 2s ease-in-out;
+}
+.futuristic-btn {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(90deg, #00d4ff, #ff00f7);
+    border: none;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: all 0.4s ease-in-out;
+    box-shadow: 0 5px 15px rgba(255, 0, 247, 0.4);
+}
+.futuristic-btn:hover {
+    color: #000;
+    background: linear-gradient(90deg, #ff00f7, #00d4ff);
+    box-shadow: 0 8px 20px rgba(0, 255, 212, 0.6);
+    transform: translateY(-5px);
+}
+@keyframes text-glow {
+    0% {
+        text-shadow: 0 0 5px #00d4ff, 0 0 10px #00d4ff, 0 0 15px #00d4ff;
+    }
+    100% {
+        text-shadow: 0 0 10px #ff00f7, 0 0 20px #ff00f7, 0 0 30px #ff00f7;
+    }
+}
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.btn-primary {
+    font-size: 1.2rem;
+    padding: 10px 30px;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #16a085, #2ecc71);
+    color: #ffffff;
+    border: none;
+}
+.card {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 255, 212, 0.1), 0 5px 10px rgba(255, 0, 247, 0.1);
+    transition: all 0.3s ease-in-out;
+    padding: 30px;
+}
+.card p {
+    color: white;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.text-center {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+.step-description {
+    margin-bottom: 20px;
+}
+.step-content {
+    margin-bottom: 30px;
+}
+.btn {
+    font-weight: bold;
+    border-radius: 50px;
+}
+#prevBtn, #nextBtn {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: all 0.4s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 255, 212, 0.3), 0 5px 10px rgba(255, 0, 247, 0.3);
+}
+#prevBtn {
+    background: linear-gradient(90deg, #ff0000, #ff7b00);
+    color: white;
+}
+#nextBtn {
+    background: linear-gradient(90deg, #00d4ff, #00ff6c);
+    color: white;
+}
+#prevBtn:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(90deg, #ff3b3b, #ff9900);
+    box-shadow: 0 8px 20px rgba(255, 59, 59, 0.5), 0 5px 10px rgba(255, 153, 0, 0.4);
+}
+#nextBtn:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(90deg, #00ffd6, #73ff96);
+    box-shadow: 0 8px 20px rgba(0, 255, 214, 0.5), 0 5px 10px rgba(115, 255, 150, 0.4);
+}
+@keyframes text-glow {
+    0% {
+        text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 30px #ff00f7;
+    }
+    100% {
+        text-shadow: 0 0 20px #ff00f7, 0 0 30px #ff00f7, 0 0 40px #00d4ff;
+    }
+}
+/* Modal Style */
+#resultModal .modal-content {
+    background: #121212; /* Latar belakang hitam penuh */
+    color: white;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 15px 30px rgba(0, 255, 212, 0.3), 0 5px 15px rgba(255, 0, 247, 0.3);
+    animation: slideUp 0.3s ease-out;
+}
+
+/* Modal Header */
+#resultModal .modal-header {
+    border-bottom: none;
+    padding: 20px;
+}
+
+#resultModal .modal-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #00d4ff, #ff00f7);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Modal Body */
+#resultModal .modal-body {
+    padding: 30px;
+    text-align: center;
+}
+
+#resultModal #resultMessage {
+    font-size: 1.1rem;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* Modal Footer */
+#resultModal .modal-footer {
+    border-top: none;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Button Styles */
+#resultModal .btn-light {
+    background: linear-gradient(45deg, #00d4ff, #ff00f7);
+    color: white;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+    padding: 10px 25px;
+    text-transform: uppercase;
+}
+
+/* Hover Effect on Button */
+#resultModal .btn-light:hover {
+    background: linear-gradient(45deg, #ff00f7, #00d4ff);
+    transform: scale(1.05); /* Sedikit memperbesar tombol */
+    box-shadow: 0 4px 15px rgba(0, 255, 212, 0.4);
+}
+
+/* Animasi Modal */
+@keyframes slideUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.tips-icon {
+    font-size: 3rem;
+    color: #00d4ff;
+    transition: all 0.3s ease;
+}
+.tips-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #00d4ff;
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 255, 212, 0.3), 0 10px 20px rgba(255, 0, 247, 0.3);
+}
+.card:hover .tips-icon {
+    color: #ff00f7;
+    transform: scale(1.1);
+}
+.card:hover .tips-title {
+    color: #ff00f7;
+}
+.futuristic-navbar {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    transition: background 0.3s ease-in-out;
+}
+.futuristic-navbar .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+.futuristic-navbar .nav-link:hover {
+    color: #00d4ff;
+}
+.futuristic-navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    height: 3px;
+    background: linear-gradient(90deg, #00d4ff, #ff00f7);
+    border-radius: 5px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+}
+.futuristic-navbar .nav-link:hover::after {
+    transform: scaleX(1);
+}
+.futuristic-navbar:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+
