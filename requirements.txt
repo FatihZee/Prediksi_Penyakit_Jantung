@@ -3,5 +3,5 @@ flask-cors
 joblib
 numpy
 pandas
-scikit-learn
+scikit-learn==1.5.2
 gunicorn  # Wajib untuk deployment
