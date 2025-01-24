@@ -33,14 +33,14 @@ section {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 400px; /* Ukuran lebih kecil untuk mengurangi rendering */
+    width: 400px;
     height: 400px;
     background: radial-gradient(circle, rgba(0, 212, 255, 0.4), rgba(0, 0, 0, 0));
     transform: translate(-50%, -50%);
     border-radius: 50%;
     animation: pulse 5s infinite ease-in-out; /* Animasi lebih lambat */
     z-index: 0;
-    will-change: transform, opacity; /* Optimasi GPU */
+    will-change: transform, opacity;
 }
 
 #landing::after {
@@ -59,8 +59,8 @@ section {
     top: 50%;
     left: 50%;
     z-index: 0;
-    animation: slide-bg 15s linear infinite; /* Kecepatan lebih lambat */
-    will-change: transform; /* Optimasi GPU */
+    animation: slide-bg 15s linear infinite;
+    will-change: transform;
 }
 
 #landing .container {
@@ -69,29 +69,37 @@ section {
     color: white;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
+    animation: text-glow 3s infinite alternate; /* Animasi teks berganti warna */
+    background: -webkit-linear-gradient(45deg, #00d4ff, #ff00a1);
+    -webkit-background-clip: text; /* Untuk efek gradasi hanya pada teks */
+    -webkit-text-fill-color: transparent;
 }
 
 @media (max-width: 768px) {
     #landing::before,
     #landing::after {
-        content: none; /* Hapus pseudo-element */
-        display: none; /* Pastikan tidak dirender */
+        content: none;
+        display: none;
     }
 
     #landing {
-        background: #1f1f1f; /* Ganti dengan solid background */
-        overflow: hidden; /* Hilangkan overflow */
-        animation: none; /* Nonaktifkan animasi */
+        background: #1f1f1f;
+        overflow: hidden;
+        animation: none;
     }
 
     #landing .container {
-        backdrop-filter: none; /* Hilangkan efek blur */
-        text-shadow: none; /* Hilangkan efek shadow */
+        backdrop-filter: none;
+        text-shadow: none;
+        animation: none; /* Nonaktifkan animasi teks */
+        background: linear-gradient(45deg, #00d4ff, #ff00a1); /* Tetap beri gradien warna */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 }
 
 html {
-    scroll-behavior: smooth; /* Haluskan scrolling */
+    scroll-behavior: smooth;
 }
 
 @keyframes pulse {
@@ -100,7 +108,7 @@ html {
         opacity: 0.6;
     }
     100% {
-        transform: translate(-50%, -50%) scale(1.1); /* Perubahan lebih kecil */
+        transform: translate(-50%, -50%) scale(1.1);
         opacity: 0;
     }
 }
@@ -110,7 +118,16 @@ html {
         transform: translate(-50%, -50%) rotate(30deg);
     }
     100% {
-        transform: translate(-50%, -50%) rotate(120deg); /* Perubahan sudut lebih kecil */
+        transform: translate(-50%, -50%) rotate(120deg);
+    }
+}
+
+@keyframes text-glow {
+    0% {
+        background: -webkit-linear-gradient(45deg, #00d4ff, #ff00a1);
+    }
+    100% {
+        background: -webkit-linear-gradient(45deg, #ff00a1, #00d4ff);
     }
 }
 
