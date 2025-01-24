@@ -64,22 +64,48 @@ section {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
 }
+@media (max-width: 768px) {
+    #landing::before {
+        width: 200px;
+        height: 200px;
+    }
+
+    #landing::after {
+        width: 120%;
+        height: 120%;
+        background: repeating-linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.02),
+            rgba(255, 255, 255, 0.02) 15px,
+            transparent 15px,
+            transparent 30px
+        );
+        animation: slide-bg 40s linear infinite;
+    }
+
+    #landing .container {
+        backdrop-filter: none;
+        background: rgba(0, 0, 0, 0.5);
+    }
+}
+
 @keyframes pulse {
     0% {
         transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
+        opacity: 0.8;
     }
     100% {
-        transform: translate(-50%, -50%) scale(1.5);
+        transform: translate(-50%, -50%) scale(1.2);
         opacity: 0;
     }
 }
+
 @keyframes slide-bg {
     0% {
         transform: translate(-50%, -50%) rotate(30deg);
     }
     100% {
-        transform: translate(-50%, -50%) rotate(390deg);
+        transform: translate(-50%, -50%) rotate(180deg);
     }
 }
 #form-section {
