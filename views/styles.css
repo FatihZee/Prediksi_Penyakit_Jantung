@@ -25,20 +25,24 @@ section {
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, #0d0d0d, #1f1f1f);
+    will-change: transform, opacity; /* Optimasi GPU */
 }
+
 #landing::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.5), rgba(0, 0, 0, 0));
+    width: 400px; /* Ukuran lebih kecil untuk mengurangi rendering */
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.4), rgba(0, 0, 0, 0));
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    animation: pulse 3s infinite;
+    animation: pulse 5s infinite ease-in-out; /* Animasi lebih lambat */
     z-index: 0;
+    will-change: transform, opacity; /* Optimasi GPU */
 }
+
 #landing::after {
     content: '';
     position: absolute;
@@ -46,8 +50,8 @@ section {
     height: 150%;
     background: repeating-linear-gradient(
         45deg,
-        rgba(255, 255, 255, 0.03),
-        rgba(255, 255, 255, 0.03) 10px,
+        rgba(255, 255, 255, 0.02),
+        rgba(255, 255, 255, 0.02) 10px,
         transparent 10px,
         transparent 20px
     );
@@ -55,8 +59,10 @@ section {
     top: 50%;
     left: 50%;
     z-index: 0;
-    animation: slide-bg 20s linear infinite;
+    animation: slide-bg 15s linear infinite; /* Kecepatan lebih lambat */
+    will-change: transform; /* Optimasi GPU */
 }
+
 #landing .container {
     position: relative;
     z-index: 1;
@@ -64,36 +70,37 @@ section {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
 }
+
 @media (max-width: 768px) {
     #landing::before,
     #landing::after {
-        content: none; /* Hapus pseudo-element sepenuhnya */
+        content: none; /* Hapus pseudo-element */
         display: none; /* Pastikan tidak dirender */
     }
 
     #landing {
-        background: #1f1f1f; /* Ganti dengan warna solid */
+        background: #1f1f1f; /* Ganti dengan solid background */
         overflow: hidden; /* Hilangkan overflow */
         animation: none; /* Nonaktifkan animasi */
     }
 
     #landing .container {
-        backdrop-filter: none; /* Hilangkan filter latar */
-        background: none; /* Tidak perlu latar tambahan */
+        backdrop-filter: none; /* Hilangkan efek blur */
+        text-shadow: none; /* Hilangkan efek shadow */
     }
 }
 
 html {
-    scroll-behavior: smooth; /* Haluskan scroll di mobile */
+    scroll-behavior: smooth; /* Haluskan scrolling */
 }
 
 @keyframes pulse {
     0% {
         transform: translate(-50%, -50%) scale(1);
-        opacity: 0.8;
+        opacity: 0.6;
     }
     100% {
-        transform: translate(-50%, -50%) scale(1.2);
+        transform: translate(-50%, -50%) scale(1.1); /* Perubahan lebih kecil */
         opacity: 0;
     }
 }
@@ -103,9 +110,10 @@ html {
         transform: translate(-50%, -50%) rotate(30deg);
     }
     100% {
-        transform: translate(-50%, -50%) rotate(180deg);
+        transform: translate(-50%, -50%) rotate(120deg); /* Perubahan sudut lebih kecil */
     }
 }
+
 #form-section {
     padding: 60px 20px;
     background: linear-gradient(135deg, #121212, #1f1f1f);
