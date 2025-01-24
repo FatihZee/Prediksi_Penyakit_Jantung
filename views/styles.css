@@ -67,19 +67,26 @@ section {
 @media (max-width: 768px) {
     #landing::before,
     #landing::after {
-        display: none; /* Sembunyikan elemen pseudo */
+        content: none; /* Hapus pseudo-element sepenuhnya */
+        display: none; /* Pastikan tidak dirender */
+    }
+
+    #landing {
+        background: #1f1f1f; /* Ganti dengan warna solid */
+        overflow: hidden; /* Hilangkan overflow */
+        animation: none; /* Nonaktifkan animasi */
     }
 
     #landing .container {
         backdrop-filter: none; /* Hilangkan filter latar */
-        background: none; /* Opsional: tambahkan latar belakang sederhana jika perlu */
-    }
-
-    /* Hapus animasi */
-    #landing {
-        animation: none;
+        background: none; /* Tidak perlu latar tambahan */
     }
 }
+
+html {
+    scroll-behavior: smooth; /* Haluskan scroll di mobile */
+}
+
 @keyframes pulse {
     0% {
         transform: translate(-50%, -50%) scale(1);
