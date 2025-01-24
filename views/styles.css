@@ -65,30 +65,21 @@ section {
     backdrop-filter: blur(5px);
 }
 @media (max-width: 768px) {
-    #landing::before {
-        width: 200px;
-        height: 200px;
-    }
-
+    #landing::before,
     #landing::after {
-        width: 120%;
-        height: 120%;
-        background: repeating-linear-gradient(
-            45deg,
-            rgba(255, 255, 255, 0.02),
-            rgba(255, 255, 255, 0.02) 15px,
-            transparent 15px,
-            transparent 30px
-        );
-        animation: slide-bg 40s linear infinite;
+        display: none; /* Sembunyikan elemen pseudo */
     }
 
     #landing .container {
-        backdrop-filter: none;
-        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: none; /* Hilangkan filter latar */
+        background: none; /* Opsional: tambahkan latar belakang sederhana jika perlu */
+    }
+
+    /* Hapus animasi */
+    #landing {
+        animation: none;
     }
 }
-
 @keyframes pulse {
     0% {
         transform: translate(-50%, -50%) scale(1);
